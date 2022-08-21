@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load static  %}
+<html>
+ <head>
+ <!--<link rel="stylesheet" type="text/css" href="{% static 'myapp/style.css' %}">-->
+ <style>
+     .hbar1 {
+ display: inline;
+ margin: 15px;
+}
+
+h1, h2, h3, h4, h5, h6{
+    color: white;
+    font-size: 28px;
+    text-align: center;
+    font-weight: bolder !important;
+}
+
+body{
+    background-color: lightblue;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding-left: 10px;
+    font-family: 'Trebuchet MS', sans-serif !important;
+
+}
+
+ </style>
+ <title>E-Learning WebApp - {% block title %}Welcome!{% endblock %}</title>
+
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+ </head>
+ <body style="background-color:lightgray">
+ <div class="container-fluid">
+ <h1 class="h1">
+     {% block myhdg %}Hello {{ user.first_name }} {% endblock %}
+ </h1>
+
+ <div class="row">
+     <div class="col-sm-3 col-md-3 col-lg-3"></div>
+     <div class="col-sm-6 col-md-6 col-lg-6">
+         {% block body_block %}*** {% endblock %}
+     </div>
+    <div class="col-sm-3 col-md-3 col-lg-3"></div>
+ </div>
+ </div>
+ <hr />
+ <br /><br />
+
+ <div>
+     <nav class="navbar navbar-inverse navbar-fixed-bottom">
+        <ul class="nav navbar-nav">
+            {% if request.user.is_authenticated %}
+                <li class="hbar1"><a href = "{% url 'eLearnApp:user_logout' %}">Logout</a></li>
+            {% else %}
+                <li class="hbar1"><a href = "{% url 'eLearnApp:user_login' %}">Login</a></li>
+                <li class="hbar1"><a href = "{% url 'eLearnApp:register' %}">Register</a></li>
+            {% endif %}
+        <li class="hbar1"><a href="/eLearnApp/about/">Find out about our ELearning site</a></li>
+        <li class="hbar1"><a href = "{% url 'eLearnApp:index' %}">Click here to return to main page</a></li>
+        <li class="hbar1"><a href = "{% url 'eLearnApp:courses' %}">Click here to see the available courses</a></li>
+         <li class="hbar1"><a href = "{% url 'eLearnApp:myaccount' %}">My Account</a></li>
+        <li class="hbar1"><a href = "{% url 'eLearnApp:myorder' %}">My Orders</a></li>
+
+        </ul>
+     </nav>
+ </div>
+</body>
+</html>

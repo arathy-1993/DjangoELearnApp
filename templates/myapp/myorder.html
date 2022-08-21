@@ -1,0 +1,24 @@
+{% extends 'myapp/base.html' %}
+
+{% block body_block %}
+    {% if student %}
+        <div>&nbsp; &nbsp;<span>First Name - {{ student.first_name }} </span> </div>
+        <div>&nbsp; &nbsp;<span>Last Name - {{ student.last_name }} </span> </div>
+        <br />
+        {% if orders %}
+            <h4> Courses </h4><br />
+            {% for order in orders %}
+                <div>&nbsp; &nbsp;<span>Name - {{ order.course.name }} </span> </div>
+                <div>&nbsp; &nbsp;<span>Price - {{ order.course.price }} </span> </div>
+                <br>
+            {% endfor %}
+        {% else %}
+            <br><br>
+            <strong> You have not placed any orders!!</strong>
+        {% endif %}
+
+    {% else %}
+        <strong> You are not a registered student!!</strong>
+    {% endif %}
+
+{% endblock %}
